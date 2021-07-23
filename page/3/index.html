@@ -68,6 +68,341 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Scss入门" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/16/Scss%E5%85%A5%E9%97%A8/" class="article-date">
+  <time datetime="2020-09-16T06:38:12.000Z" itemprop="datePublished">2020-09-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/html-css-js/">html,css,js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/16/Scss%E5%85%A5%E9%97%A8/">scss入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <style>
+.title1{
+    font-size:36px;
+    color:#e7767f;
+    /* 桃红 */
+
+}
+.title2{
+    font-size:29px;
+    color:#176f58;
+    /* 祖母绿 */
+}
+.title3{
+    font-size:22px;
+    color:#21a675;
+    /* 石绿 */
+}
+.title4{
+    font-size:15px;
+    color:#a8cd34;
+    /* 柳绿 */
+}
+.name{
+
+    margin-left: auto;
+    text-align: right;
+    color: #d05667;
+    margin-right: 10px;
+    margin-top: 20px;
+    /*海棠红*/
+}
+</style>
+
+<div class="name">by pawncs</div>
+
+<hr>
+<div class="title2">零、摘要</div>
+
+<hr>
+<ol>
+<li><p>什么是SCSS和SASS，以及如何安装。</p>
+</li>
+<li><p>展示了变量、嵌套、混合功能的简单使用。</p>
+</li>
+</ol>
+<hr>
+<div class="title2">一、SASS</div>
+
+<hr>
+<div class="title3">1.1 什么是SASS</div>
+
+<ul>
+<li>SASS是一款CSS的预编译器，定义了一种新的编程语言，需要先编译成CSS才能被浏览器理解。</li>
+<li>SASS比CSS更像一种编程语言，有变量，函数，控制语句，导入，嵌套等高级功能。</li>
+<li>类似的预编译器还有<code>less</code>,<code>Stylus</code>等<div class="title4">有了这些功能，SASS可以</div>
+</li>
+</ul>
+<ol>
+<li>提供变量，实现一键替换主题色之类的功能</li>
+<li>用嵌套写法减少选择器的重复书写</li>
+<li>用混用功能解决代码复用问题</li>
+<li>用函数进行复杂的运算</li>
+<li>把央视代码模块化，减少不同的模块的代码间不必要的相互影响，提高代码安全性</li>
+<li>……</li>
+</ol>
+<div class="title3">1.2 安装</div>
+<div class="title4">安装sass</div>
+
+<p>参考 <a href="https://sass.bootcss.com/documentation" target="_blank" rel="noopener">sass文档</a> 安装到本地，然后配置到ideaj,vs等。（自行百度）</p>
+<p>在HTML文件中直接引入编译后的CSS文件即可</p>
+<div class="title4">Sass和Scss</div>
+
+<p>Scss是Sass 3 为了兼容CSS引入的新语法（任何标准的CSS3样式表都是具有相同语义的有效的Scss文件）</p>
+<blockquote>
+<p>文件后缀为<code>.scss</code></p>
+</blockquote>
+<hr>
+<div class="title2">二、变量</div>
+
+<hr>
+<div class="title3">2.1 变量</div>
+
+<p>提供了SassScript的新功能。可用于任何属性，允许属性使用变量、算术运算等额外功能<br>变量以“$”开头，赋值方法与CSS一样:<br><code>$width: 10px;</code>   </p>
+<div class="title4">使用变量</div>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#main</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$width</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>变量类型为字符串一般不需要双引号，除非某些特殊情况，如有双斜杠“//”，则需要单引号或者双引号（因为<code>//</code>表示注释）</p>
+<div class="title4">定义类似于数组的变量</div>
+
+<p><code>$animals: puppy kitty chick;</code></p>
+<p>可配合循环语句使用</p>
+<div class="title4">支持简单计算</div>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$width</span>: <span class="number">10px</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#main</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$width</span> / <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因此可以方便的定义长宽比固定的元素，如</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$width</span>: <span class="number">10px</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#main</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$width</span> / <span class="number">2</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="variable">$width</span> * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="title3">2.2 插值法</div>
+
+<p><code>#{}</code> 插值可以在Sass样式表的任何一个地方使用</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$name</span>: <span class="string">"mail"</span>;</span><br><span class="line"><span class="variable">$top-or-bottom</span>: <span class="string">"top"</span>;</span><br><span class="line"><span class="variable">$left-or-right</span>: <span class="string">"left"</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.icon-</span>#&#123;<span class="variable">$name</span>&#125; &#123;</span><br><span class="line">  <span class="attribute">background-image</span>: url(<span class="string">"/icons/#&#123;$name&#125;.svg"</span>);</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  #&#123;<span class="variable">$top-or-bottom</span>&#125;: <span class="number">0</span>;</span><br><span class="line">  #&#123;<span class="variable">$left-or-right</span>&#125;: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>可以用插值法插入任何类型的变量，不仅仅是字符串</p>
+</blockquote>
+<hr>
+<div class="title2">三、嵌套</div>
+
+<hr>
+<blockquote>
+<p>将共同的选择器提取出来，防止选择器过长</p>
+</blockquote>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">main <span class="selector-class">.double</span> <span class="selector-class">.item</span> <span class="selector-class">.links</span> &#123;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">20px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="title3">3.1 嵌套</div>
+<div class="title4">嵌套规则</div>
+
+<p>Sass允许将一套CSS样式嵌套进另一套样式中，内层的样式将他的外层的选择器作为父选择器。</p>
+<div class="title4">父选择器 &</div>
+
+<p>在嵌套时，有时候需要直接使用嵌套外层的福选择器，（例如，给元素设定<code>hover</code>样式时，可以用’&amp;’代表规则外层的父选择器）</p>
+<blockquote>
+<p>个人认为更像插值（可以字符串拼接）</p>
+</blockquote>
+<hr>
+<div class="title2">四、复用：mixin/include</div>
+
+<hr>
+<blockquote>
+<p>我们可用混合（mixin/include）来解决代码复用的问题</p>
+</blockquote>
+<div class="title3">4.1 无参数混合</div>
+
+<div class="title4">混合的使用方式</div>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> square &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 应用：</span></span><br><span class="line"><span class="selector-class">.user-avatar</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.admin-avatar</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>@mixin</code> : 定义可复用的样式<br><code>@include</code> : 应用可复用的样式</p>
+</blockquote>
+<div class="title3">4.2 有参数混合</div>
+<div class="title4">参数无默认值</div>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> square(<span class="variable">$size</span>) &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$size</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="variable">$size</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 应用</span></span><br><span class="line"><span class="selector-class">.avatar</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square(<span class="number">100px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>需传入变量 <code>$size</code></p>
+<div class="title4">参数有默认值</div>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> square(<span class="variable">$size</span>: <span class="number">100px</span>) &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$size</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="variable">$size</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不传参数就会使用默认的值 100px</span></span><br><span class="line"><span class="selector-class">.avatar</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入参数就会使用传入的值 200px</span></span><br><span class="line"><span class="selector-class">.avatar-200</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square(<span class="variable">$size</span>: <span class="number">200px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<div class="title2">五、自定义函数</div>
+
+<hr>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@function</span> psd2px(<span class="variable">$px</span>) &#123;</span><br><span class="line">  @return #&#123;$px / 2&#125;px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.header</span> &#123;</span><br><span class="line">  <span class="comment">// 假设设计稿上高度是100px，那么函数参数就写100，计算后返回的值就是 50px</span></span><br><span class="line">  <span class="attribute">height</span>: psd2px(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://pawncs.github.io/2020/09/16/Scss%E5%85%A5%E9%97%A8/" data-id="ckrg2cmng002wdkma3uhrgibm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SCSS/" rel="tag">SCSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-移动端Web开发" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/15/%E7%A7%BB%E5%8A%A8%E7%AB%AFWeb%E5%BC%80%E5%8F%91/" class="article-date">
+  <time datetime="2020-09-15T05:00:04.000Z" itemprop="datePublished">2020-09-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/html-css-js/">html,css,js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/15/%E7%A7%BB%E5%8A%A8%E7%AB%AFWeb%E5%BC%80%E5%8F%91/">移动端Web开发</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <style>
+.title1{
+    font-size:36px;
+    color:#e7767f;
+    /* 桃红 */
+
+}
+.title2{
+    font-size:29px;
+    color:#176f58;
+    /* 祖母绿 */
+}
+.title3{
+    font-size:22px;
+    color:#21a675;
+    /* 石绿 */
+}
+.title4{
+    font-size:15px;
+    color:#a8cd34;
+    /* 柳绿 */
+}
+.name{
+
+    margin-left: auto;
+    text-align: right;
+    color: #d05667;
+    margin-right: 10px;
+    margin-top: 20px;
+    /*海棠红*/
+}
+</style>
+
+<div class="name">by pawncs</div>
+
+<hr>
+<div class="title2">一、认识meta </div>
+
+<hr>
+<blockquote>
+<p><code>&lt;meta&gt;</code> 在 <code>&lt;head&gt;</code> 标签内</p>
+</blockquote>
+<div class="title3">1.1 meta元素</div>
+
+<blockquote>
+<p>元数据信息：meta-infortion<br>元数据：用来描述数据的数据  </p>
+</blockquote>
+<p><code>&lt;meta&gt;</code> 是一个自闭合元素，只有开始标签，没有结束标签。</p>
+<p>对meta元素进行设置指的是通过标签属性进行设置。</p>
+<ol>
+<li>charset的属性<ul>
+<li>utf-8<br>(UTF-8是HTML5的默认属性，涵盖了世界上几乎所有字符和符号)(没有他，中文就是乱码)</li>
+</ul>
+</li>
+<li>viewport的属性<ul>
+<li>width：viewport的宽度</li>
+<li>height：viewport的高度</li>
+<li>initial-scale：初始的缩放比例</li>
+<li>minimum-scale：允许用户缩放到的最小比例</li>
+<li>maximum-scale：允许用户缩放到的最大比例</li>
+<li>user-scalable:用户是否可以手动缩放</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 声明文档使用的字符编码 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 设置移动端视图 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"</span> /&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- H5页面窗口自动调整到设备宽度，并禁止用户缩放页面 --&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<hr>
+<div class="title2">二、认识新单位 rem/em</div>
+
+<hr>
+<blockquote>
+<p>rem 是一个相对长度单位。在不同的环境中，1rem可以转化为不同的px的值。</p>
+</blockquote>
+<div class="title3">2.1 单位rem和px之间的转换</div>
+
+<p>rem和px之间的转换比取决于页根元素(<code>&lt;html&gt;&lt;/html&gt;</code>)的字体大小.1 rem = 根元素的字体大小</p>
+<p>例：浏览器默认字体大小为16px,则2.5rem = 2.5 * 16 px = 40px</p>
+<blockquote>
+<p>一般浏览器默认为16px.最小显示为10px.即设置10px以下的数值一般是没有用的，显示的时候都会按10px显示，除非用到了CSS的transform。</p>
+</blockquote>
+<div class="title3">2.1 单位em</div>
+
+<p>rem是根据根元素的字体大小转换的，em是根据本级元素的字体大小转换的（当本级元素未确定时，根据父元素）</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.parent</span> &#123;</span><br><span class="line">  <span class="comment">// 父元素的字体大小为 20px</span></span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">20px</span>;</span><br><span class="line"></span><br><span class="line">  &gt; <span class="selector-class">.child</span> &#123;</span><br><span class="line">    <span class="comment">// 子元素的字体大小为 0.7 * 20px = 14px</span></span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">0.7em</span>; </span><br><span class="line">    <span class="comment">// 特别注意：子元素的宽度为 10 * 14px = 140px</span></span><br><span class="line">    <span class="attribute">width</span>: <span class="number">10em</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<hr>
+<div class="title2">三、认识新单位 vw/vh</div>
+
+<hr>
+<ul>
+<li>1vw = 1/100 视口宽度 </li>
+<li>1vh = 1/100 视口高度</li>
+</ul>
+<div class="title3">3.1 模态框</div>
+
+<p>指页面中弹出的窗口。此时需要给整个视口加上半透明覆盖层。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 将蒙层的宽高设置为视口的宽度和高度</span><br><span class="line"><span class="selector-tag">width</span>: 100<span class="selector-tag">vw</span>;</span><br><span class="line"><span class="selector-tag">height</span>: 100<span class="selector-tag">vh</span>;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://pawncs.github.io/2020/09/15/%E7%A7%BB%E5%8A%A8%E7%AB%AFWeb%E5%BC%80%E5%8F%91/" data-id="ckrg2cmnf002tdkma8xsn70k2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-CSS补充" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/09/14/CSS%E8%A1%A5%E5%85%85/" class="article-date">
@@ -224,7 +559,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/09/14/CSS%E8%A1%A5%E5%85%85/" data-id="ckqt0prbn0006xomadwn5ao4z" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/09/14/CSS%E8%A1%A5%E5%85%85/" data-id="ckrg2cmmi000fdkma5lmx587o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -606,7 +941,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/09/12/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" data-id="ckqt0prcz002qxoma11lf9ips" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/09/12/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" data-id="ckrg2cmn80026dkma8cj364pa" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -650,7 +985,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckqt0prbu000lxomae9ps5xx9" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckrg2cmmd0007dkma8ei60q9x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -693,7 +1028,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/09/11/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/" data-id="ckqt0prd1002wxomad4hv62cr" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/09/11/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/" data-id="ckrg2cmna002ddkma2dje74ua" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -788,7 +1123,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/08/21/Android%E4%B8%AD%E7%A2%B0%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF/" data-id="ckqt0prbl0003xoma6ur84zs8" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/08/21/Android%E4%B8%AD%E7%A2%B0%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF/" data-id="ckrg2cmm70002dkmac06wczb1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
@@ -901,7 +1236,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/08/09/%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%88%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="ckqt0prda003ixomagnjh2qhy" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/08/09/%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%88%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="ckrg2cmni0033dkma1hbvfpih" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
@@ -1006,7 +1341,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/07/23/Sqlite%E6%95%B0%E6%8D%AE%E5%BA%93/" data-id="ckqt0prbz0010xoma45q05yq8" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/07/23/Sqlite%E6%95%B0%E6%8D%AE%E5%BA%93/" data-id="ckrg2cmmn000odkma1x6569sp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -1051,201 +1386,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/07/22/Android%E6%9D%83%E9%99%90/" data-id="ckqt0prbi0001xomah2awe22e" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/07/22/Android%E6%9D%83%E9%99%90/" data-id="ckrg2cmma0004dkma0wmc9yw0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-gradle镜像" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/20/gradle%E9%95%9C%E5%83%8F/" class="article-date">
-  <time datetime="2020-07-20T13:03:43.000Z" itemprop="datePublished">2020-07-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/20/gradle%E9%95%9C%E5%83%8F/">gradle镜像</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>阿里镜像:</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">buildscript</span> &#123;</span><br><span class="line">    <span class="keyword">repositories</span> &#123;</span><br><span class="line">        maven &#123; url <span class="string">'https://maven.aliyun.com/repository/google/'</span> &#125;</span><br><span class="line">        maven &#123; url <span class="string">'https://maven.aliyun.com/repository/jcenter/'</span>&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">dependencies</span> &#123;</span><br><span class="line">        <span class="keyword">classpath</span> <span class="string">'com.android.tools.build:gradle:2.2.3'</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// <span class="doctag">NOTE:</span> Do not place your application dependencies here; they belong</span></span><br><span class="line">        <span class="comment">// in the individual module build.gradle files</span></span><br><span class="line">    &#125;        </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">allprojects</span> &#123;</span><br><span class="line">    <span class="keyword">repositories</span> &#123;</span><br><span class="line">        maven &#123; url <span class="string">'https://maven.aliyun.com/repository/google/'</span> &#125;</span><br><span class="line">        maven &#123; url <span class="string">'https://maven.aliyun.com/repository/jcenter/'</span>&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/07/20/gradle%E9%95%9C%E5%83%8F/" data-id="ckqt0prcm0021xomaey5r3tea" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gradle/" rel="tag">gradle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-realm使用" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/20/realm%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time datetime="2020-07-20T12:59:59.000Z" itemprop="datePublished">2020-07-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/20/realm%E4%BD%BF%E7%94%A8/">Realm使用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <style>
-.title1{
-    font-size:36px;
-    color:#e7767f;
-    /* 桃红 */
-
-}
-.title2{
-    font-size:29px;
-    color:#176f58;
-    /* 祖母绿 */
-}
-.title3{
-    font-size:22px;
-    color:#21a675;
-    /* 石绿 */
-}
-.title4{
-    font-size:15px;
-    color:#a8cd34;
-    /* 柳绿 */
-}
-.name{
-
-    margin-left: auto;
-    text-align: right;
-    color: #d05667;
-    margin-right: 10px;
-    margin-top: 20px;
-    /*海棠红*/
-}
-</style>
-<div class="name">by pawncs</div>
-<div class="title2">一、安装</div>
-
-<p>将其作为Gradle插件安装。</p>
-<div class="title4">步骤1：将类路径添加到build.gradle中。</div>
-
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">buildscript</span> &#123;</span><br><span class="line">    <span class="keyword">repositories</span> &#123;</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">dependencies</span> &#123;</span><br><span class="line">        <span class="keyword">classpath</span> <span class="string">"io.realm:realm-gradle-plugin:6.0.2"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<div class="title4">步骤2：realm-android在应用程序级别build.gradle文件顶部附近应用插件。</div>
-
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: <span class="string">'realm-android'</span></span><br></pre></td></tr></table></figure>
-
-<div class="title4">步骤3：在application文件里将其初始化。</div>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Realm.init(<span class="keyword">this</span>);</span><br></pre></td></tr></table></figure>
-<p><a href="https://www.imooc.com/video/19247" target="_blank" rel="noopener">视频</a></p>
-<div class="title3">Realm 模型的概念</div>
-
-<ul>
-<li>一个模型就是一张表，模型中的子弹表示表中的列</li>
-<li>模型需要继承RealmObject类</li>
-<li>模型实时，自动更新</li>
-</ul>
-<div class="title3">Realm 事务</div>
-
-<ul>
-<li>所有会使数据发生变化的操作必须在事务中进行</li>
-<li>事务分为同步事务和异步事务两种</li>
-<li>两种事务共有三种写法</li>
-</ul>
-<div class="title4">手动同步开启事务</div>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">        <span class="comment">//获取realm对象</span></span><br><span class="line">        Realm realm = Realm.getDefaultInstance();</span><br><span class="line">        <span class="comment">//开启事务</span></span><br><span class="line">        realm.beginTransaction();</span><br><span class="line">        <span class="comment">//创建被管理的实例对象，该对象的所有变更都会被直接应用到Realm数据源中</span></span><br><span class="line">        Model model = realm.createObject(Model<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        <span class="comment">//更改数据</span></span><br><span class="line">        model.setCount(model.getCount() + <span class="number">1</span>);</span><br><span class="line">        <span class="comment">//提交事务</span></span><br><span class="line">        realm.commitTransaction();</span><br><span class="line"><span class="comment">//         //取消事务        </span></span><br><span class="line"><span class="comment">//        realm.cancelTransaction();</span></span><br></pre></td></tr></table></figure>
-
-<div class="title4">同步事务执行块</div>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*除了写法和上一种不同外并没有本质的区别</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">realm.executeTransaction(<span class="keyword">new</span> Realm.Transaction() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Realm realm)</span> </span>&#123;</span><br><span class="line">                Model model = realm.createObject(Model<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">                model.setCount(model.getCount() + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
-
-<div class="title4">异步事务执行块</div>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">    Realm realm = Realm.getDefaultInstance();</span><br><span class="line">    RealmAsyncTask asyncTask = realm.executeTransactionAsync(<span class="keyword">new</span> Realm.Transaction() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Realm realm)</span> </span>&#123;</span><br><span class="line">            Model model = realm.createObject(Model<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">            model.setName(<span class="string">"异步"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, <span class="keyword">new</span> Realm.Transaction.OnSuccess() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            Log.d(<span class="string">"Realm"</span>,<span class="string">"事务成功回调"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, <span class="keyword">new</span> Realm.Transaction.OnError() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable error)</span> </span>&#123;</span><br><span class="line">            Log.e(<span class="string">"Realm"</span>,<span class="string">"事务失败回调"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<div class="title3">引用计数</div>
-
-<ul>
-<li>Realm实例使用引用计数的方式。<blockquote>
-<p>每次<code>getDefaultInstance</code>计数加一，<code>close</code>时计数减一。所以每次打开之后都要关闭。</p>
-</blockquote>
-</li>
-</ul>
-<div class="title3">增删改查之——增</div>
-
-<ul>
-<li><p>insert或insertOrUpdate</p>
-</li>
-<li><p>copyToRealm/createObject获取自动更新的Realm模型（把new出来的对象放到Realm里。）</p>
-</li>
-</ul>
-<blockquote>
-<p>在做实验的时候发现一点，即引用了Realm后，再添加Button标签，若button没有添加事件，则工程无法启动</p>
-</blockquote>
-<blockquote>
-<p>密码加密<code>setPassword(EncrytUtils.encryptMD5ToString(password))</code></p>
-</blockquote>
-<blockquote>
-<p>未完待续</p>
-</blockquote>
-<div class="title1">附录</div>
-
-<ul>
-<li><p>此错误为未在表AdroidManifest.xml中注册Application</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.IllegalStateException: Call &#96;Realm.init(Context)&#96; before calling this method.</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>实体类必须构建一个无参构造函数，不然会报编译错误</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Compilation failed; see the compiler error output for details.</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/07/20/realm%E4%BD%BF%E7%94%A8/" data-id="ckqt0prcu002dxoma0u0o4lmg" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Realm/" rel="tag">Realm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
 
     </footer>
   </div>
@@ -1289,7 +1433,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS/" style="font-size: 12.5px;">CSS</a> <a href="/tags/Design-Pattern/" style="font-size: 10px;">Design Pattern</a> <a href="/tags/Flutter/" style="font-size: 10px;">Flutter</a> <a href="/tags/IO/" style="font-size: 10px;">IO</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Lambda/" style="font-size: 10px;">Lambda</a> <a href="/tags/MongoDB/" style="font-size: 12.5px;">MongoDB</a> <a href="/tags/MyBatis/" style="font-size: 10px;">MyBatis</a> <a href="/tags/Realm/" style="font-size: 10px;">Realm</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SCSS/" style="font-size: 10px;">SCSS</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/dictionary/" style="font-size: 20px;">dictionary</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/note/" style="font-size: 17.5px;">note</a> <a href="/tags/study/" style="font-size: 15px;">study</a>
+      <a href="/tags/CSS/" style="font-size: 12.5px;">CSS</a> <a href="/tags/Design-Pattern/" style="font-size: 10px;">Design Pattern</a> <a href="/tags/Flutter/" style="font-size: 10px;">Flutter</a> <a href="/tags/IO/" style="font-size: 12.5px;">IO</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Lambda/" style="font-size: 10px;">Lambda</a> <a href="/tags/MongoDB/" style="font-size: 12.5px;">MongoDB</a> <a href="/tags/MyBatis/" style="font-size: 10px;">MyBatis</a> <a href="/tags/Realm/" style="font-size: 10px;">Realm</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SCSS/" style="font-size: 10px;">SCSS</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/dictionary/" style="font-size: 20px;">dictionary</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/note/" style="font-size: 17.5px;">note</a> <a href="/tags/study/" style="font-size: 15px;">study</a>
     </div>
   </div>
 
@@ -1311,6 +1455,14 @@
       <ul>
         
           <li>
+            <a href="/2021/07/23/%E5%86%85%E6%A0%B8%E6%80%81%E4%B8%8E%E7%94%A8%E6%88%B7%E6%80%81/">内核态与用户态</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/19/java-io-2/">java_io_2</a>
+          </li>
+        
+          <li>
             <a href="/2021/07/07/http%E5%8D%8F%E8%AE%AE/">http协议</a>
           </li>
         
@@ -1320,14 +1472,6 @@
         
           <li>
             <a href="/2021/04/07/java-io/">java_io</a>
-          </li>
-        
-          <li>
-            <a href="/2021/03/29/Mybatis/">MyBatis</a>
-          </li>
-        
-          <li>
-            <a href="/2021/03/23/java-%E7%B1%BB%E5%8A%A0%E8%BD%BD/">java-类加载</a>
           </li>
         
       </ul>

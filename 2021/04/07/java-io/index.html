@@ -15,7 +15,7 @@
 <meta property="og:description" content=".title1{     font-size:36px;     color:#e7767f;     &#x2F;* 桃红 *&#x2F;  } .title2{     font-size:29px;     color:#176f58;     &#x2F;* 祖母绿 *&#x2F; } .title3{     font-size:22px;     color:#21a675;     &#x2F;* 石绿 *&#x2F; } .title4{">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-04-07T13:31:03.000Z">
-<meta property="article:modified_time" content="2021-04-10T07:54:19.794Z">
+<meta property="article:modified_time" content="2021-07-19T09:18:40.010Z">
 <meta property="article:author" content="pawncs">
 <meta property="article:tag" content="IO">
 <meta name="twitter:card" content="summary">
@@ -138,7 +138,6 @@
 <div class="title2">零、目录</div>
 
 <p><a href="#java-io-1">一、文件的编码</a><br><a href="#java-io-2">二、File类的使用</a><br><a href="#java-io-3">三、RandomAccessFile 基本操作</a><br><a href="#java-io-4">四、字节流</a><br><a href="#java-io-4-1">4.1 文件输入流FileInputStream</a><br><a href="#java-io-4-2">4.2 文件输出流FileOutputStream</a><br><a href="#java-io-4-3">4.3 数据输入输出流</a><br><a href="#java-io-4-4">4.4 字节缓冲流</a><br><a href="#java-io-5">五、字符流</a><br><a href="#java-io-6">六、对象的序列化和反序列化</a><br><a href="#java-io-6-1">6.1 序列化基本操作</a><br><a href="#java-io-6-2">6.2 transient及ArrayList源码分析</a><br><a href="#java-io-6-3">6.3 序列化中子父类构造函数问题</a><br><a href="#java-io-ex">EX、其他</a>  </p>
-<p>对象的序列化和反序列化</p>
 <hr>
 <div class="title2" id="java-io-1">一、文件的编码</div>
 
@@ -264,18 +263,28 @@
 <hr>
 <hr>
 <div class="title2" id="java-io-5">五、字符流</div>
------
-+ 注意编码问题
-+ 认识文本和文本文件
-  + java文本（char）是16位无符号整数，是字符的unicode编码（双字节）。文件是byte byte 的数据序列。
-  + 文本文件是文本(char)序列按照某编码方案序列化为byte的存储结果。
-+ 字符流（Reader Writer）,一次处理一个字符。底层仍然是字节序列。-->操作的是文本文件
-  + 字符流基本实现
-    + `InputStreamReader`：byte流->char流,按照编码解析
-    + `outputStreamWriter`:char流->byte流，按照编码处理
 
+<hr>
 <ul>
-<li>字符流过滤器（缓冲？）<ul>
+<li><p>注意编码问题</p>
+</li>
+<li><p>认识文本和文本文件</p>
+<ul>
+<li>java文本（char）是16位无符号整数，是字符的unicode编码（双字节）。文件是byte byte 的数据序列。</li>
+<li>文本文件是文本(char)序列按照某编码方案序列化为byte的存储结果。</li>
+</ul>
+</li>
+<li><p>字符流（Reader Writer）,一次处理一个字符。底层仍然是字节序列。–&gt;操作的是文本文件</p>
+<ul>
+<li>字符流基本实现<ul>
+<li><code>InputStreamReader</code>：byte流-&gt;char流,按照编码解析</li>
+<li><code>outputStreamWriter</code>:char流-&gt;byte流，按照编码处理</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>字符流过滤器（缓冲？）</p>
+<ul>
 <li>BufferedReader/BufferedWriter。好处是通过嵌套可以设置编码，（FileReader等不行）同时提供一次读一行等的功能</li>
 <li>PrintReader等。</li>
 </ul>
@@ -284,8 +293,8 @@
 <hr>
 <hr>
 <div class="title2" id="java-io-6">六、对象的序列化和反序列化</div>
------
 
+<hr>
 <blockquote>
 <p>序列化和反序列化，就是Object和byte序列的互相转换。</p>
 </blockquote>
@@ -324,7 +333,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/04/07/java-io/" data-id="ckqt0prct002axoma6wooeypp" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/04/07/java-io/" data-id="ckrg2cmmw001ddkma5e3yddfo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IO/" rel="tag">IO</a></li></ul>
@@ -383,7 +392,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS/" style="font-size: 12.5px;">CSS</a> <a href="/tags/Design-Pattern/" style="font-size: 10px;">Design Pattern</a> <a href="/tags/Flutter/" style="font-size: 10px;">Flutter</a> <a href="/tags/IO/" style="font-size: 10px;">IO</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Lambda/" style="font-size: 10px;">Lambda</a> <a href="/tags/MongoDB/" style="font-size: 12.5px;">MongoDB</a> <a href="/tags/MyBatis/" style="font-size: 10px;">MyBatis</a> <a href="/tags/Realm/" style="font-size: 10px;">Realm</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SCSS/" style="font-size: 10px;">SCSS</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/dictionary/" style="font-size: 20px;">dictionary</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/note/" style="font-size: 17.5px;">note</a> <a href="/tags/study/" style="font-size: 15px;">study</a>
+      <a href="/tags/CSS/" style="font-size: 12.5px;">CSS</a> <a href="/tags/Design-Pattern/" style="font-size: 10px;">Design Pattern</a> <a href="/tags/Flutter/" style="font-size: 10px;">Flutter</a> <a href="/tags/IO/" style="font-size: 12.5px;">IO</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Lambda/" style="font-size: 10px;">Lambda</a> <a href="/tags/MongoDB/" style="font-size: 12.5px;">MongoDB</a> <a href="/tags/MyBatis/" style="font-size: 10px;">MyBatis</a> <a href="/tags/Realm/" style="font-size: 10px;">Realm</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/SCSS/" style="font-size: 10px;">SCSS</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/dictionary/" style="font-size: 20px;">dictionary</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/note/" style="font-size: 17.5px;">note</a> <a href="/tags/study/" style="font-size: 15px;">study</a>
     </div>
   </div>
 
@@ -405,6 +414,14 @@
       <ul>
         
           <li>
+            <a href="/2021/07/23/%E5%86%85%E6%A0%B8%E6%80%81%E4%B8%8E%E7%94%A8%E6%88%B7%E6%80%81/">内核态与用户态</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/19/java-io-2/">java_io_2</a>
+          </li>
+        
+          <li>
             <a href="/2021/07/07/http%E5%8D%8F%E8%AE%AE/">http协议</a>
           </li>
         
@@ -414,14 +431,6 @@
         
           <li>
             <a href="/2021/04/07/java-io/">java_io</a>
-          </li>
-        
-          <li>
-            <a href="/2021/03/29/Mybatis/">MyBatis</a>
-          </li>
-        
-          <li>
-            <a href="/2021/03/23/java-%E7%B1%BB%E5%8A%A0%E8%BD%BD/">java-类加载</a>
           </li>
         
       </ul>
